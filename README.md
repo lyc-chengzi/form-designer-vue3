@@ -7,7 +7,7 @@
 
 ```
 
-###[view端] => tdp.lenovo.com/form-designer/view
+###[view端] => lyc-chengzi.github.com/form-designer/view
 ```
 
 ```
