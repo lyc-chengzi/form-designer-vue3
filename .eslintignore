@@ -1,0 +1,6 @@
+packages/**/*.config.js
+packages/form-designer-admin/vue.config.js
+packages/form-designer-view/vue.config.js
+tsdist
+packages/form-designer-admin/**/*.d.ts
+packages/form-designer-server/dist

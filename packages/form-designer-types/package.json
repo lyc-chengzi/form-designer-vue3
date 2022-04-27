@@ -1,0 +1,17 @@
+{
+  "name": "form-designer-types",
+  "version": "0.1.0",
+  "main": "index.js",
+  "author": "lyc",
+  "license": "MIT",
+  "scripts": {
+    "tsc": "tsc"
+  },
+  "dependencies": {
+    "axios": "^0.24.0",
+    "vue": "^3.2.13"
+  },
+  "devDependencies": {
+    "typescript": "~4.5.5"
+  }
+}

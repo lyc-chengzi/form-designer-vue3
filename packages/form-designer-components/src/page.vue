@@ -1,0 +1,148 @@
+<template>
+    <div v-if="json" class="template-page" :id="json.key" :style="json.css" data-app>
+        <template v-if="_isDesignMode">
+            <fd-layout
+                class="fd-page-layout"
+                :state="json"
+                parentId=""
+                :pageData="pageData"
+                :pageMethod="pageMethods"
+            ></fd-layout>
+        </template>
+        <template v-else>
+            <component
+                :is="state.type"
+                v-for="state in json.list"
+                :key="state.key"
+                :state="state"
+                :parentId="json.key"
+                :pageData="pageData"
+                :pageMethod="pageMethods"
+            ></component>
+        </template>
+    </div>
+</template>
+
+<style lang="less">
+@import url('./styles/var/index.less');
+
+@prefixName: ~'@{prefix-className}';
+.@{prefixName}-renderer {
+    position: relative;
+}
+</style>
+
+<script lang="ts">
+import Vue, { defineComponent, PropType, reactive } from 'vue';
+import { EnumComponentGroup, EnumComponentType } from 'form-designer-types/enum/components';
+import { EnumAppMode } from 'form-designer-types/enum';
+import { IPageState } from 'form-designer-types/interface/components/page';
+import FdComponent from './component';
+import moment from 'moment';
+
+export default defineComponent({
+    name: EnumComponentType.page,
+    props: {
+        json: {
+            required: false,
+            type: Object as PropType<IPageState>,
+        },
+        appMode: {
+            required: true,
+            default: () => EnumAppMode.view,
+        },
+    },
+    setup() {
+        // 当前页面所有组件的实例集合
+        const components = reactive<Map<string, FdComponent>>(new Map());
+        // const addComponent = (key: string, componentInstance: Vue.ComponentPublicInstance) => {
+        //     components.set(key, new FdComponent(key, componentInstance));
+        // };
+        // const removeComponent = (key: string) => {
+        //     components.delete(key);
+        // };
+        // const getComponentByKey = (key: string): FdComponent | undefined => {
+        //     return components.get(key);
+        // };
+        // const getAppMode = () => {
+        //     return props.appMode;
+        // };
+        // 当前页面所有的页面级变量
+        const pageData = reactive<Record<string, any>>({});
+        const pageMethods = reactive<Record<string, any>>({});
+
+        // provide('pageComponents', readonly(components));
+        // provide('getAppMode', getAppMode);
+        // provide('addComponent', addComponent);
+        // provide('removeComponent', removeComponent);
+        // provide('getComponentByKey', getComponentByKey);
+
+        return {
+            components,
+            pageData,
+            pageMethods,
+        };
+    },
+    created() {
+        this.pageData = this.json!.props!.pageData.value;
+        const methods = this.json!.props!.pageMethods.value;
+        for (let key in methods) {
+            this.pageMethods[key] = new Function(methods[key]).bind(this);
+        }
+    },
+    computed: {
+        _isDesignMode(): boolean {
+            return this.appMode === EnumAppMode.design;
+        },
+    },
+    provide() {
+        const $this = this;
+        return {
+            getAppMode(): EnumAppMode {
+                return $this.appMode;
+            },
+            addComponent(key: string, componentInstance: Vue.ComponentPublicInstance): void {
+                $this.components.set(key, new FdComponent(key, componentInstance));
+            },
+            removeComponent(key: string): void {
+                $this.components.delete(key);
+            },
+            getComponentByKey(key: string): FdComponent | undefined {
+                return $this.components.get(key);
+            },
+            getPageInstance(): Vue.ComponentPublicInstance {
+                return $this;
+            },
+        };
+    },
+    methods: {
+        // 清空form组件的值
+        resetFormFields() {
+            this.components.forEach(component => {
+                // 将form组件的value设置为空
+                if (component.$state && component.$state.group === EnumComponentGroup.form) {
+                    component.setProps('value', null);
+                }
+            });
+        },
+        // 根据给定的defaultData默认值，初始化表单数据
+        initFormFields(defaultData: Record<string, any>) {
+            this.components.forEach(component => {
+                // 将form组件的value设置为空
+                if (component.$state && component.$state.group === EnumComponentGroup.form) {
+                    const value = defaultData[component.$key || ''] || null;
+                    if (component.$state.type === EnumComponentType.datePicker) {
+                        if (value) {
+                            component.setProps('value', moment(value));
+                        } else {
+                            component.setProps('value', null);
+                        }
+                    } else {
+                        component.setProps('value', value);
+                    }
+                }
+            });
+        },
+    },
+});
+</script>

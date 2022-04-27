@@ -1,0 +1,49 @@
+@import url("../../styles/var/index.less");
+.designer-main-panel {
+    position: relative;
+    #designer-main-action-box {
+        position: absolute;
+        display: none;
+        z-index: 1;
+        transition: all 0.3s;
+        width: 30px;
+        height: 20px;
+        .action-bars {
+            height: 100%;
+            width: 100%;
+            background-color: azure;
+            i.iconfont {
+                z-index: 100;
+                color: @primary-color;
+                float: right;
+                cursor: pointer;
+            }
+        }
+    }
+    .main-panel-container {
+        min-height: 100%;
+        position: relative;
+        padding-bottom: 20px;
+        .designer-comp {
+            position: relative;
+            border: 1px dashed #c8c8c8;
+            &:hover {
+                border-color: @primary-color;
+            }
+        }
+        /* 选中的组件 */
+        .designer-component-ck {
+            border: 2px solid @primary-color !important;
+            > .fd-layout.designer-comp {
+                border: 0;
+            }
+        }
+        .designer-component-ck.designer-comp {
+            border: 0;
+        }
+
+        .sortable-chosen.sortable-ghost {
+            border-top: 2px solid @primary-color !important;
+        }
+    }
+}

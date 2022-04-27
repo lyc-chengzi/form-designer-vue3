@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+        "module": "CommonJS",
+        "removeComments": true,
+        "allowJs": true,
+        "target": "ESNext",
+        "noImplicitAny": true,
+        "outDir": "./dist",
+        "sourceMap": false,
+        "experimentalDecorators": true
+    },
+    "include": [
+        "./src/**/*.ts"
+    ],
+    "exclude": [
+        "interface"
+    ]
+}

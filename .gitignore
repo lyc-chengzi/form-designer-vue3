@@ -1,0 +1,40 @@
+.DS_Store
+node_modules
+/tsdist
+/packages/form-designer-admin/dist
+/packages/form-designer-admin/src/@types/lib
+
+/packages/form-designer-components/dist
+
+/packages/form-designer-view/dist
+
+/packages/form-designer-vuex/dist
+
+/packages/form-designer-server/public/uploads/
+/packages/form-designer-server/logs
+/packages/form-designer-server/dist
+/packages/form-designer-server/lib
+
+/packages/form-designer-types/dist
+
+/packages/form-designer-utils/dist
+
+/packages/form-editor/src/libs
+
+# local env files
+.env.*.local
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

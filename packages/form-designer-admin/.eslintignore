@@ -1,0 +1,3 @@
+*.config.js
+*.d.ts
+./src

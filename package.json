@@ -1,0 +1,31 @@
+{
+  "name": "form-designer",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "admin": "yarn workspace form-designer-admin",
+    "view": "yarn workspace form-designer-view",
+    "vuex": "yarn workspace form-designer-vuex",
+    "components": "yarn workspace form-designer-components",
+    "types": "yarn workspace form-designer-types",
+    "utils": "yarn workspace form-designer-utils",
+    "ssr": "yarn workspace form-designer-ssr",
+    "server": "yarn workspace form-designer-server",
+    "ts:declaration" : "tsc"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "devDependencies": {
+    "lerna": "^4.0.0"
+  },
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{vue,ts,tsx}": [
+      "yarn admin lint",
+      "git add"
+    ]
+  }
+}

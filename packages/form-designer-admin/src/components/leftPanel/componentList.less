@@ -1,0 +1,51 @@
+ul.fd-ul-component {
+    text-align: left;
+    .components {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: flex-start;
+        align-items: flex-start;
+        li.li-component {
+            padding-left: 20px;
+            position: relative;
+            height: 60px;
+            box-sizing: border-box;
+            cursor: move;
+            width: 33.33%;
+            margin-bottom: 20px;
+            padding-left: 2px;
+            padding-right: 2px;
+            text-align: center;
+            padding: 0;
+            color: #111111;
+            // background-color:rgba(38, 132, 252, 0.5);
+            border-radius: 4px;
+            i.iconfont {
+                font-size: 30px;
+                color: rgba(38, 132, 252, 0.5);
+                vertical-align: middle;
+            }
+            .comp-icon {
+                height: 40px;
+                line-height: 40px;
+            }
+            .comp-name {
+                height: 20px;
+                line-height: 20px;
+            }
+            .btn-add {
+                position: absolute;
+                display: none;
+                font-size: 16px;
+                left: 50%;
+                top: 20px;
+                transform: translateX(-50%) translateY(-50%);
+            }
+            &:hover {
+                .btn-add {
+                    display: block;
+                }
+            }
+        }
+    }
+}

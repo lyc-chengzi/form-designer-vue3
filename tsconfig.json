@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "strict": false,
+    "noImplicitAny": false,
+    "jsx": "preserve",
+    "importHelpers": true,
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "sourceMap": false,
+    "baseUrl": ".",
+    "outDir": "tsdist",
+    "forceConsistentCasingInFileNames": false,
+    "declaration": true,
+    "declarationDir": "packages/form-designer-admin/src/@types/lib"
+  },
+  "include": [
+    "packages/form-designer-types/interface/**/*.ts",
+    "packages/form-designer-components/**/*.ts"
+  ]
+}

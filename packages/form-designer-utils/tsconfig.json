@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "strict": false,
+    "noImplicitAny": false,
+    "jsx": "preserve",
+    "importHelpers": true,
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "sourceMap": false,
+    "baseUrl": ".",
+    "outDir": "dist/js",
+    "forceConsistentCasingInFileNames": false,
+    "declaration": true,
+    "declarationDir": "dist/@types",
+  },
+  "files": [
+    "./index.ts",
+    "./service/index.ts"
+  ]
+}

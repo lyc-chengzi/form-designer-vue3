@@ -1,0 +1,53 @@
+{
+  "name": "form-designer-server",
+  "version": "1.0.0",
+  "description": "Now I’m the model of a modern major general / The venerated Virginian veteran whose men are all / Lining up, to put me up on a pedestal / Writin’ letters to relatives / Embellishin’ my elegance and eloquence / But the elephant is in the room / The truth is in ya face when ya hear the British cannons go / BOOM",
+  "keywords": [],
+  "author": "liuyc14 <liuyc14@lenovo.com>",
+  "license": "ISC",
+  "main": "lib/form-designer-server.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lyc-chengzi/form-designer.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1",
+    "start": "env-cmd --verbose -e localhost nodemon --watch src/**/*.ts --exec ts-node src/server/app.ts",
+    "serve": "yarn build&&pm2 start dist/server/ecosystem.config.js",
+    "serve:dev": "yarn build&&pm2 start dist/server/ecosystem.config.js --env dev",
+    "serve:localhost": "pm2 start dist/server/ecosystem.config.js --env localhost",
+    "stop": "pm2 stop dist/server/ecosystem.config.js",
+    "delete": "pm2 delete dist/server/ecosystem.config.js",
+    "build": "tsc",
+    "reserve:dev": "yarn stop&&yarn serve:dev",
+    "lint": "eslint src/**/*.ts"
+  },
+  "bugs": {
+    "url": "https://github.com/lyc-chengzi/form-designer/issues"
+  },
+  "homepage": "https://github.com/lyc-chengzi/form-designer#readme",
+  "dependencies": {
+    "dayjs": "^1.10.7",
+    "koa": "^2.13.4",
+    "koa-body": "^4.2.0",
+    "koa-log4": "^2.3.2",
+    "koa-router": "^10.1.1",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "@types/koa": "^2.13.4",
+    "@types/koa-log4": "^2.3.3",
+    "@types/koa-router": "^7.4.4",
+    "@types/uuid": "^8.3.3",
+    "env-cmd": "^10.1.0",
+    "nodemon": "^2.0.15",
+    "ts-node": "^10.4.0"
+  }
+}

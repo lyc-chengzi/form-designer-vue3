@@ -1,0 +1,77 @@
+{
+  "name": "form-designer-admin",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "vue-cli-service serve --mode local",
+    "build:dev": "vue-cli-service build --mode development",
+    "build:prod": "vue-cli-service build --mode production",
+    "test:unit": "vue-cli-service test:unit",
+    "lint": "vue-cli-service lint",
+    "build:designerLib": "vue-cli-service build --target lib --name designer src/editor/index.ts",
+    "tsc:editor": "tsc -p tsconfigEditor.json"
+  },
+  "dependencies": {
+    "@ant-design/icons-vue": "^6.1.0",
+    "ant-design-vue": "^3.2.0",
+    "classnames": "^2.3.1",
+    "copy-to-clipboard": "^3.3.1",
+    "core-js": "^3.8.3",
+    "dayjs": "^1.10.7",
+    "file-saver": "^2.0.5",
+    "form-designer-components": "0.1.0",
+    "form-designer-types": "0.1.0",
+    "form-designer-utils": "0.1.0",
+    "form-designer-vuex": "0.1.0",
+    "moment": "^2.29.1",
+    "monaco-editor": "^0.30.1",
+    "monaco-editor-auto-typings": "^0.1.1",
+    "monaco-editor-webpack-plugin": "^6.0.0",
+    "vue": "^3.2.13",
+    "vue-color": "^2.8.1",
+    "vue-router": "^4.0.3",
+    "vuedraggable": "^4.1.0",
+    "vuex": "^4.0.0",
+    "vuex-router-sync": "^5.0.0",
+    "vxe-table": "^4.2.3-beta.0",
+    "xe-utils": "^3.5.4"
+  },
+  "devDependencies": {
+    "@types/file-saver": "^2.0.4",
+    "@types/jest": "^24.0.19",
+    "@types/koa": "^2.13.4",
+    "@types/vue-color": "^2.4.3",
+    "@types/vuedraggable": "^2.24.0",
+    "@typescript-eslint/eslint-plugin": "^5.4.0",
+    "@typescript-eslint/parser": "^5.4.0",
+    "@vue/cli-plugin-babel": "~5.0.0",
+    "@vue/cli-plugin-eslint": "~5.0.0",
+    "@vue/cli-plugin-router": "~5.0.0",
+    "@vue/cli-plugin-typescript": "~5.0.0",
+    "@vue/cli-plugin-unit-jest": "~4.5.0",
+    "@vue/cli-plugin-vuex": "~5.0.0",
+    "@vue/cli-service": "~5.0.0",
+    "@vue/eslint-config-typescript": "^9.1.0",
+    "@vue/test-utils": "^1.0.3",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-vue": "^8.0.3",
+    "less": "^4.0.0",
+    "less-loader": "^8.0.0",
+    "lint-staged": "^9.5.0",
+    "prettier": "^2.4.1",
+    "sass": "~1.32.0",
+    "sass-loader": "^10.0.0",
+    "typescript": "~4.5.5"
+  },
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,jsx,vue,ts,tsx}": [
+      "vue-cli-service lint",
+      "git add"
+    ]
+  }
+}

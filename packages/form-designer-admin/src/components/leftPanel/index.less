@@ -1,0 +1,131 @@
+@import url("../../styles/var/index.less");
+.designer-left-panel {
+    width: 320px;
+    position: relative;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    border-right: 1px solid @frame-border-color;
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        text-align: center;
+    }
+
+    .first-menu {
+        width: 44px;
+        height: 100%;
+        border-right: 1px solid @frame-border-color;
+        li {
+            width: 44px;
+            height: 44px;
+            line-height: 44px;
+            overflow: hidden;
+            text-align: center;
+            cursor: pointer;
+            color: @primary-color;
+            i.iconfont{
+                font-size: 18px;
+            }
+        }
+        li.selected {
+            background-color: @primary-color !important;
+            color: #fff !important;
+        }
+        li:hover {
+            background-color: rgba(38, 132, 252, 0.1);
+            color: @primary-color;
+        }
+    }
+    .second-menu {
+        flex: 1;
+        height: 100%;
+        overflow-y: auto;
+        h3 {
+            height: 44px;
+            line-height: 44px;
+            margin: 0;
+            padding: 0 20px;
+            text-align: left;
+            font-weight: 600;
+            color: #000;
+            border-bottom: 1px solid #aaa;
+            position: relative;
+        }
+        .ant-collapse-content-box {
+            padding: 10px;
+        }
+        li.li-page {
+            height: 40px;
+            line-height: 40px;
+            cursor: pointer;
+            text-align: left;
+            padding-left: 20px;
+        }
+        div.pages {
+            .pages-action {
+                position: absolute;
+                height: 100%;
+                width: 100px;
+                top: 0;
+                right: 0;
+                text-align: right;
+                padding-right: 10px;
+                i.iconfont {
+                    cursor: pointer;
+                    font-size: 14px;
+                    color: @primary-color;
+                    margin-left: 5px;
+                }
+                i.icon_40tree {
+                    color: #aaa;
+                }
+                i.icon_40tree.selected {
+                    color: @primary-color;
+                }
+            }
+            li.li-page {
+                .page-action {
+                    float: right;
+                    margin-right: 10px;
+                    cursor: pointer;
+                    .anticon {
+                        margin-left: 4px;
+                        color: #000;
+                        &:hover {
+                            color: @primary-color;
+                        }
+                    }
+                }
+                .anticon-exclamation {
+                    margin-left: 6px;
+                    color: red;
+                }
+                .anticon-check {
+                    margin-left: 6px;
+                    color: #49cc90;
+                }
+            }
+            li.selected {
+                background-color: #e8e8e8;
+                border-left: 3px solid @primary-color;
+                color: @primary-color;
+            }
+        }
+        ul.tree-component {
+            text-align: left;
+            .ant-tree, .ant-tree-child-tree {
+                text-align: left;
+            }
+            .iconfont {
+                font-size: 14px;
+            }
+            .ant-tree-title {
+                height: 24px;
+                line-height: 24px;
+            }
+        }        
+    }
+}

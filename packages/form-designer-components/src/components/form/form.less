@@ -1,0 +1,19 @@
+@import url("../../styles/var/index.less");
+
+@prefixName: ~"@{prefix-className}";
+.@{prefixName}-form {
+    position: relative;
+    .error--text {
+        color: #ff5252 !important;
+    }
+    .col-submit {
+        margin: 12px auto;
+        text-align: center;
+        button {
+            margin-right: 10px;
+        }
+    }
+    .fd-form-layout > .layout-drag {
+        min-height: 200px;
+    }
+}

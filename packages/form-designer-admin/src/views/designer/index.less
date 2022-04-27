@@ -1,0 +1,114 @@
+@blueColor: #1890ff;
+.preview-dialog {
+    width: 96% !important;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+div.form-designer-index {
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-start;
+    width: 100%;
+    height: 100%;
+    &.preview {
+        #designer-main-action-box {
+            display: none !important;
+        }
+        .designer-component-ck {
+            border: none !important;
+        }
+    }
+    .designer-index-toolbar {
+        flex: 0 0 auto;
+        height: 44px;
+        line-height: 44px;
+        display: flex;
+        flex-flow: row nowrap;
+        background-color: #fff;
+        justify-content: space-between;
+        align-items: center;
+        overflow: hidden;
+        .toolbar-left {
+            padding-left: 20px;
+            height: 100%;
+            i.iconfont {
+                font-size: 16px;
+                margin-right: 20px;
+                cursor: pointer;
+            }
+            i.left {
+                line-height: 44px;
+                display: inline-block;
+                &.show {
+                    color: @blueColor;
+                }
+            }
+            i.right {
+                line-height: 30px;
+                display: inline-block;
+                transform: rotate(180deg);
+                margin-bottom: 4px;
+                // margin-top: -4px;
+                &.show {
+                    color: @blueColor;
+                }
+            }
+        }
+        .toolbar-right {
+            i.iconfont.Preview {
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 1;
+                margin-right: 2px;
+            }
+            .ant-btn {
+                margin-right: 10px;
+            }
+        }
+        .switch-designer {
+            margin-right: 10px;
+        }
+    }
+
+    div.designer-index-main {
+        position: relative;
+        width: 100%;
+        // height: 100%;
+        flex: 1;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        align-items: flex-start;
+        border-top: 1px solid #bdbdbd;
+        overflow: hidden;
+        .designer-body {
+            flex: 1;
+            height: 100%;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        .designer-right {
+            width: 360px;
+            height: 100%;
+            transition: all 0.3s;
+            overflow-x: hidden;
+            overflow-y: auto;
+            &.hide {
+                width: 0 !important;
+            }
+        }
+    }
+}
+
+.preview-dialog {
+    .ant-modal-content {
+        margin-top: 10px;
+        height: 100%;
+        overflow: auto;
+    }
+}

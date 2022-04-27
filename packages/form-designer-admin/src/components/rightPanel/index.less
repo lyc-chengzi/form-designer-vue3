@@ -1,0 +1,45 @@
+@import url("../../styles/var/index.less");
+.designer-right-box {
+  border-left: 1px solid @frame-border-color;
+  width: 360px !important;
+  overflow-y: auto;
+  .ant-tabs-bar {
+    margin: 0;
+  }
+
+  .ant-tabs-tabpane {
+    .section {
+      h3 {
+        font-weight: 600;
+        padding: 0 10px;
+        height: 40px;
+        line-height: 40px;
+        text-align: left;
+        border-bottom: 1px solid #e8e8e8;
+        margin: 0;
+      }
+
+      .item {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        align-items: center;
+        min-height: 40px;
+        border-bottom: 1px solid #e8e8e8;
+
+        .label {
+          width: 80px;
+          border-right: 1px solid #e8e8e8;
+          text-align: right;
+          padding-right: 5px;
+        }
+        .value {
+          flex: 1;
+          > .ant-input, > .ant-select {
+            width: 80%;
+          }
+        }
+      }
+    }
+  }
+}

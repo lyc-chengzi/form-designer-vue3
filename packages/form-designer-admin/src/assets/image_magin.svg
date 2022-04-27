@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="252px" height="140px" viewBox="0 0 252 140" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>image_magin</title>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="边距修改4" transform="translate(-55.000000, -343.000000)">
+            <g id="编组-2" transform="translate(41.000000, 120.000000)">
+                <g id="编组-7" transform="translate(14.000000, 183.999248)">
+                    <g id="image_magin" transform="translate(0.000000, 39.000752)">
+                        <rect id="矩形" fill="#D4DDE9" x="0" y="0" width="252" height="140"></rect>
+                        <polygon id="矩形" fill="#F6F9FF" points="0 0 48 26 48 114 0 140"></polygon>
+                        <polygon id="矩形备份" fill="#F6F9FF" transform="translate(228.000000, 70.000000) scale(-1, 1) translate(-228.000000, -70.000000) " points="204 0 252 26 252 114 204 140"></polygon>
+                        <polygon id="矩形" fill="#FFFFFF" points="0 0 252 0 204 26 48 26"></polygon>
+                        <polygon id="矩形备份-2" fill="#FFFFFF" transform="translate(126.000000, 127.000000) scale(1, -1) translate(-126.000000, -127.000000) " points="0 114 252 114 204 140 48 140"></polygon>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
