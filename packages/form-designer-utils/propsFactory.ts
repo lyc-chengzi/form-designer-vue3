@@ -14,7 +14,6 @@ const PropsFactory: IPropsRenderFactory = {
         return undefined;
     },
     setPropsValue: (state, propertyName, value, type = EnumPropsValueType.string) => {
-        console.log(state, propertyName);
         if (state && propertyName) {
             if (state.props) {
                 // @ts-ignore

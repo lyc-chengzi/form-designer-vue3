@@ -1,17 +1,27 @@
-import { EnumCssProerty } from 'form-designer-types/enum/components';
-import { IComponentState } from 'form-designer-types/interface/components';
+import { EnumAppMode } from 'form-designer-types/enum';
+import { ISetupBaseProps } from 'form-designer-types/interface/components';
 import { utils } from 'form-designer-utils';
-import { apiDomain } from 'form-designer-utils/service';
-import { ref, computed, watch } from 'vue';
+import { ref, watch } from 'vue';
 
-export default function useBaseMethods<T extends IComponentState>(state: T) {
-    // 监听自定义样式
-    @Watch(`state.${EnumCssProerty.styleText}`, { immediate: true })
-    styleTextChange(value: string, oldValue: string) {
-        if (state && value !== oldValue) {
-            utils.$createDynamicStyle(this.state.key, value);
-        }
+export default function useBaseWatch(
+    props: ISetupBaseProps,
+    params: {
+        appMode: EnumAppMode;
     }
-
-    
+) {
+    if (params.appMode === EnumAppMode.design) {
+        watch(
+            props.state,
+            newState => {
+                // 监听styleText，用户自定义样式字段
+                if (newState.styleText) {
+                    console.log('styleText watch', newState.styleText);
+                    utils.$createDynamicStyle(props.state.key, newState.styleText);
+                }
+            },
+            {
+                immediate: true,
+            }
+        );
+    }
 }

@@ -55,27 +55,9 @@ export default defineComponent({
     setup() {
         // 当前页面所有组件的实例集合
         const components = reactive<Map<string, FdComponent>>(new Map());
-        // const addComponent = (key: string, componentInstance: Vue.ComponentPublicInstance) => {
-        //     components.set(key, new FdComponent(key, componentInstance));
-        // };
-        // const removeComponent = (key: string) => {
-        //     components.delete(key);
-        // };
-        // const getComponentByKey = (key: string): FdComponent | undefined => {
-        //     return components.get(key);
-        // };
-        // const getAppMode = () => {
-        //     return props.appMode;
-        // };
         // 当前页面所有的页面级变量
         const pageData = reactive<Record<string, any>>({});
         const pageMethods = reactive<Record<string, any>>({});
-
-        // provide('pageComponents', readonly(components));
-        // provide('getAppMode', getAppMode);
-        // provide('addComponent', addComponent);
-        // provide('removeComponent', removeComponent);
-        // provide('getComponentByKey', getComponentByKey);
 
         return {
             components,
@@ -101,7 +83,7 @@ export default defineComponent({
             getAppMode(): EnumAppMode {
                 return $this.appMode;
             },
-            addComponent(key: string, componentInstance: Vue.ComponentPublicInstance): void {
+            addComponent(key: string, componentInstance: Vue.ComponentInternalInstance): void {
                 $this.components.set(key, new FdComponent(key, componentInstance));
             },
             removeComponent(key: string): void {

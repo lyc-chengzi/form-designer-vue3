@@ -5,19 +5,20 @@ import { IComponentState } from 'form-designer-types/interface/components';
 
 import { propsFactory, cssFactory } from 'form-designer-utils';
 export default class FdComponent {
-    constructor(
-        key: string,
-        componentInstance: Vue.ComponentPublicInstance<any, any, any> | undefined
-    ) {
+    constructor(key: string, componentInstance: Vue.ComponentInternalInstance | undefined) {
+        console.log('componentInstance', componentInstance);
         this.$key = key;
-        this.$$ref = componentInstance;
-        if (componentInstance && componentInstance.$props) {
-            this.$state = componentInstance.$props.state;
+        this.internalInstance = componentInstance;
+        // @ts-ignore
+        this.$$ref = componentInstance?.proxy;
+        if (componentInstance && componentInstance.props) {
+            this.$state = componentInstance.props.state as IComponentState;
         }
     }
     readonly $key?: string;
     readonly $state?: IComponentState;
-    readonly $$ref?: Vue.ComponentPublicInstance<any, any, any>;
+    readonly $$ref?: Vue.ComponentPublicInstance;
+    readonly internalInstance?: Vue.ComponentInternalInstance;
     // 获取组件属性
     public getProps = (name: string): any => {
         if (this.$$ref && this.$state) {

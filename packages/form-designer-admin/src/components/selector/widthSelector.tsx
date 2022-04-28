@@ -87,9 +87,9 @@ export default defineComponent({
     },
     render() {
         return (
-            <a-input v-model={this._value} style={{ width: '80%' }}>
+            <a-input-group compact>
+                <a-input v-model:value={this._value} style={{ width: '100px' }}></a-input>
                 <a-select
-                    slot="addonAfter"
                     value={this.valueUnit}
                     onChange={this.valueUnitChange}
                     style={{ width: '66px' }}
@@ -98,7 +98,7 @@ export default defineComponent({
                         <a-select-option value={type.key}>{type.label}</a-select-option>
                     ))}
                 </a-select>
-            </a-input>
+            </a-input-group>
         );
     },
 });

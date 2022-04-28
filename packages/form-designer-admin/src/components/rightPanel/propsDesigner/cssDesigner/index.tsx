@@ -9,18 +9,25 @@ import CssWidthSelector from '../../../selector/widthSelector';
 import CssColorSelector from '../../../selector/colorSelector';
 import { mapGetters } from 'vuex';
 
+let monacoEditor: monaco.editor.IStandaloneCodeEditor | undefined = undefined;
+
 export default defineComponent({
     name: 'designer-css-panel',
+    components: {
+        CssWidthSelector,
+        CssColorSelector,
+        CssBoxDesigner,
+    },
     props: {
         element: {
             type: Object as PropType<IDesignerComponent>,
             required: false,
         },
     },
+    monacoEditor: 123123,
     data() {
         return {
             showMonaco: false,
-            monacoEditor: undefined as monaco.editor.IStandaloneCodeEditor | undefined,
         };
     },
     computed: {
@@ -30,8 +37,8 @@ export default defineComponent({
     },
     methods: {
         initMonaco() {
-            if (!this.monacoEditor) {
-                this.monacoEditor = monaco.editor.create(
+            if (!monacoEditor) {
+                monacoEditor = monaco.editor.create(
                     document.getElementById('fd_css_designer_monaco')!,
                     {
                         language: 'css',
@@ -41,7 +48,7 @@ export default defineComponent({
                     }
                 );
             } else {
-                this.monacoEditor.setValue(
+                monacoEditor.setValue(
                     cssFactory.getCssValue(this.element!, EnumCssProerty.styleText) || ''
                 );
             }
@@ -57,8 +64,8 @@ export default defineComponent({
         },
         saveMonaco() {
             this.showMonaco = false;
-            if (this.monacoEditor) {
-                const styleText = this.monacoEditor.getValue();
+            if (monacoEditor) {
+                const styleText = monacoEditor.getValue();
                 cssFactory.setCssValue(this.element!, EnumCssProerty.styleText, styleText);
             }
         },
@@ -154,8 +161,7 @@ export default defineComponent({
                             <div class="item">
                                 <div class="label">宽度</div>
                                 <div class="value">
-                                    {/*// @ts-ignore */}
-                                    <CssWidthSelector
+                                    <css-width-selector
                                         element={this.element}
                                         propertyName={EnumCssProerty.width}
                                     />
@@ -167,8 +173,7 @@ export default defineComponent({
                             <div class="item">
                                 <div class="label">高度</div>
                                 <div class="value">
-                                    {/*// @ts-ignore */}
-                                    <CssWidthSelector
+                                    <css-width-selector
                                         element={this.element}
                                         propertyName={EnumCssProerty.height}
                                     />
@@ -180,8 +185,7 @@ export default defineComponent({
                             <div class="item">
                                 <div class="label">背景色</div>
                                 <div class="value">
-                                    {/*// @ts-ignore */}
-                                    <CssColorSelector
+                                    <css-color-selector
                                         element={this.element}
                                         propertyName={EnumCssProerty.backgroundColor}
                                     />
@@ -200,8 +204,7 @@ export default defineComponent({
                     <div class="item">
                         <div class="label">边距</div>
                         <div class="value">
-                            {/*// @ts-ignore */}
-                            <CssBoxDesigner element={this.element} />
+                            <css-box-designer element={this.element} />
                         </div>
                     </div>
                     {this.renderCssList()}

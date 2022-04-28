@@ -1,10 +1,8 @@
-import Vue from 'vue';
 import { IComponentState } from './index';
 import { EnumComponentType } from '../../enum/components';
 
 export interface IPageState extends IComponentState<IPageProps> {
     type: EnumComponentType.page;
-    $$refs?: Record<string, Vue>;
 }
 
 export interface IPageProps {

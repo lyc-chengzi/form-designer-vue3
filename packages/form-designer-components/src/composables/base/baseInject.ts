@@ -5,7 +5,7 @@ export default function useBaseInject() {
     // 向页面注册组件
     const addComponent = inject(
         'addComponent',
-        (key: string, componentInstance: Vue.ComponentPublicInstance) => {
+        (key: string, componentInstance: Vue.ComponentInternalInstance) => {
             console.log('inject: addComponent ------------->', key, componentInstance);
         }
     );

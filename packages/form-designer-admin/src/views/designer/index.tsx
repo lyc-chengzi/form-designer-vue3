@@ -10,7 +10,10 @@ import { IPageModuleState } from 'form-designer-types/interface/designer';
 import DesignerRight from '../../components/rightPanel';
 import DesignerMain from '../../components/mainPanel';
 import Preview from 'form-designer-components/src/page.vue';
-import { commit_designer_import_config } from 'form-designer-vuex/src/store/modules/designer.module';
+import {
+    commit_designer_import_config,
+    commit_designer_init_designer_page,
+} from 'form-designer-vuex/src/store/modules/designer.module';
 import { commit_app_changeMode } from 'form-designer-vuex/src/store';
 import { EnumServiceResultStatus } from 'form-designer-types/enum/request';
 import { EnumComponentType } from 'form-designer-types/enum/components';
@@ -36,6 +39,7 @@ export default defineComponent({
     },
     mounted() {
         this.$store.commit(commit_app_changeMode, { mode: EnumAppMode.design });
+        this.$store.commit(`designer/${commit_designer_init_designer_page}`);
     },
     computed: {
         ...mapGetters({ appInfo: 'appInfo', appMode: 'mode' }),
@@ -51,17 +55,6 @@ export default defineComponent({
             showRight: true,
             submitLoading: false,
         };
-    },
-    provide: {
-        // addComponent(key: string, componentInstance: Vue.ComponentPublicInstance) {
-        //     this.components.set(key, new FdComponent(key, componentInstance));
-        // },
-        // removeComponent(key: string) {
-        //     this.components.delete(key);
-        // },
-        // getComponentByKey(key: string): FdComponent | undefined {
-        //     return this.components.get(key);
-        // },
     },
     methods: {
         exportJson() {

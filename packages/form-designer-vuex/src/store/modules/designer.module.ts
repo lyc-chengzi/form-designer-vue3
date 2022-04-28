@@ -55,6 +55,20 @@ const getDefaultPageModule = (state: IDesignerModuleState): IPageModuleState => 
     //     };
     //     newPage.list!.push(newForm);
     // }
+    const layoutState = state.componentList.find(c => c.type === EnumComponentType.layout);
+    if (layoutState) {
+        const Key = utils.$getUUID(EnumComponentType.layout);
+        const newForm: IDesignerComponent = {
+            key: Key,
+            code: '',
+            label: layoutState.label,
+            icon: layoutState.icon,
+            group: layoutState.group,
+            type: layoutState.type,
+            list: [],
+        };
+        newPage.list!.push(newForm);
+    }
     return newPage;
 };
 

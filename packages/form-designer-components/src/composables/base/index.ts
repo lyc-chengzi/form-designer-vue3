@@ -1,23 +1,23 @@
-import { getCurrentInstance, computed } from 'vue';
+import { computed } from 'vue';
 import { EnumApiType, EnumEventType } from 'form-designer-types/enum/components';
 import { ISetupBaseProps } from 'form-designer-types/interface/components';
 import { apiFactory, eventFactory, propsFactory, request } from 'form-designer-utils';
 import useBaseInject from './baseInject';
 import useBaseLifecycle from './baseLifecycle';
-import FdComponent from '../../component';
+import useBaseWatch from './baseWatch';
 import { IServiceResult } from 'form-designer-types/interface/request';
 import apiDomain from 'form-designer-utils/service/apiDomain';
 import { EnumAppMode } from 'form-designer-types/enum';
 
 export default function useBaseIndex(props: ISetupBaseProps) {
-    console.log('useBaseIndex --------------->');
-    const internalInstance = getCurrentInstance();
-    console.log('internalInstance ------------>', internalInstance);
     const injects = useBaseInject();
+    // 生命周期
     useBaseLifecycle(props, {
         addComponent: injects.addComponent,
         removeComponent: injects.removeComponent,
     });
+    // 添加watch
+    useBaseWatch(props, { appMode: injects.getAppMode() });
     // 处理后的css
     const c_Css = computed<any>(() => {
         return {
@@ -59,9 +59,8 @@ export default function useBaseIndex(props: ISetupBaseProps) {
         return result;
     };
     const getFunction = (functionName: string) => {
-        console.log('getFunction internalInstance ------------>', internalInstance);
         // @ts-ignore
-        const $function = internalInstance.pageMethod[functionName];
+        const $function = injects.getPageInstance().pageMethod[functionName];
         let result: any = undefined;
         if ($function) {
             result = $function();
@@ -75,15 +74,13 @@ export default function useBaseIndex(props: ISetupBaseProps) {
         const events = eventFactory.getEventsByType(props.state, eventType);
         if (events.length) {
             // 组装事件处理函数
-            // eslint-disable-next-line @typescript-eslint/no-this-alias
-            const $this = internalInstance;
             return function ($event: Event) {
                 const $page = injects.getPageInstance();
                 // 组装执行函数
                 const functions = events.map(event => {
                     if (event.funcName) {
                         // @ts-ignore
-                        return $this.pageMethod[event.funcName];
+                        return $page.pageMethod[event.funcName];
                     } else {
                         return new Function('$event', '$state', event.funcStr);
                     }
@@ -96,7 +93,7 @@ export default function useBaseIndex(props: ISetupBaseProps) {
     };
     // 根据key返回包装的component对象，一般提供给代码编辑器使用
     const getComponent = (key: string) => {
-        return new FdComponent(key, injects.getComponentByKey(key));
+        return injects.getComponentByKey(key);
     };
     // 触发指定的api
     async function triggerApi(params: {
