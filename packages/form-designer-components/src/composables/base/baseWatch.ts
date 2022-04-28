@@ -1,7 +1,7 @@
 import { EnumAppMode } from 'form-designer-types/enum';
 import { ISetupBaseProps } from 'form-designer-types/interface/components';
 import { utils } from 'form-designer-utils';
-import { ref, watch } from 'vue';
+import { watch } from 'vue';
 
 export default function useBaseWatch(
     props: ISetupBaseProps,
