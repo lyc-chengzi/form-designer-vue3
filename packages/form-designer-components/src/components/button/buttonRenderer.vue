@@ -1,7 +1,7 @@
 <template>
     <a-button
         class="fd-button"
-        :id="state.key"
+        :id="props.state.key"
         v-bind="c_Props"
         :style="c_Css"
         @click="clickHandler"
@@ -11,29 +11,35 @@
     </a-button>
 </template>
 
-<script lang="tsx">
+<script lang="ts">
 import { defineComponent } from 'vue';
-import { COMPONENTCOMMONPROPS } from '../../constant';
-import useBase from '../../composables/base';
-import { EnumComponentType, EnumEventType } from 'form-designer-types/enum/components';
+import { EnumComponentType } from 'form-designer-types/enum/components';
 
 export default defineComponent({
     name: EnumComponentType.button,
-    props: COMPONENTCOMMONPROPS,
-    setup(props) {
-        const base = useBase(props as any);
-        return {
-            ...base,
-        };
-    },
-    computed: {
-        // 创建click事件
-        clickHandler(): any {
-            return this.getEventHandlers(EnumEventType.click);
-        },
-        mouseoverHandler(): any {
-            return this.getEventHandlers(EnumEventType.mouseOver);
-        },
-    },
+});
+</script>
+
+<script lang="ts" setup>
+import { defineProps } from 'vue';
+import { EnumEventType } from 'form-designer-types/enum/components';
+import { computed } from 'vue';
+import useBase from '../../composables/base';
+import { IComponentState } from 'form-designer-types/interface/components';
+
+const props = defineProps<{
+    state: IComponentState;
+    parentId: string;
+    pageData: Record<string, any>;
+    pageMethod: Record<string, any>;
+}>();
+
+const { c_Props, c_Css, getEventHandlers } = useBase(props);
+
+const clickHandler = computed(() => {
+    return getEventHandlers(EnumEventType.click);
+});
+const mouseoverHandler = computed(() => {
+    return getEventHandlers(EnumEventType.mouseOver);
 });
 </script>

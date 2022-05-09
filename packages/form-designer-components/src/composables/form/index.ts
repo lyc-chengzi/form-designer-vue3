@@ -2,8 +2,8 @@ import { getCurrentInstance, onBeforeUnmount, computed } from 'vue';
 import useFormInject from './formInject';
 import formFactory from 'form-designer-utils/formFactory';
 
-import { ISetupBaseProps } from 'form-designer-types/interface/components';
 import { IFieldCallbackRule } from 'form-designer-types/interface/components/form';
+import { ISetupBaseProps } from 'form-designer-types/interface/components';
 
 export default function useFormIndex(props: ISetupBaseProps) {
     console.log('useFormIndex --------------->');
