@@ -70,7 +70,7 @@ const valid = ref(false);
 const formRef = ref<HTMLFormElement | null>(null);
 
 provide(getFdFormRef, () => {
-    return internalInstance;
+    return internalInstance || undefined;
 });
 provide(getFdFormFields, () => {
     return formFields;

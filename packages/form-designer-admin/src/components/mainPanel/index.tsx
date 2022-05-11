@@ -194,10 +194,7 @@ export default defineComponent({
                                 <h5>请拖入容器组件</h5>
                             </div>
                         ) : null}
-                        <page-view
-                            json={this.selectedPage}
-                            appMode={EnumAppMode.design}
-                        ></page-view>
+                        <page-view json={this.selectedPage} appMode={this.appMode}></page-view>
                     </div>
                 ) : null}
             </div>

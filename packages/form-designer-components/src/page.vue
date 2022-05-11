@@ -33,8 +33,15 @@
 </style>
 
 <script lang="ts">
-import Vue, { defineComponent, PropType, reactive } from 'vue';
+import Vue, { defineComponent, PropType, reactive, provide, getCurrentInstance } from 'vue';
 import { EnumComponentGroup, EnumComponentType } from 'form-designer-types/enum/components';
+import {
+    addComponent,
+    removeComponent,
+    getAppMode,
+    getComponentByKey,
+    getPageInstance,
+} from 'form-designer-types/constant/injectKeys';
 import { EnumAppMode } from 'form-designer-types/enum';
 import { IPageState } from 'form-designer-types/interface/components/page';
 import FdComponent from './component';
@@ -52,12 +59,29 @@ export default defineComponent({
             default: () => EnumAppMode.view,
         },
     },
-    setup() {
+    setup(props) {
+        const instance = getCurrentInstance();
         // 当前页面所有组件的实例集合
         const components = reactive<Map<string, FdComponent>>(new Map());
         // 当前页面所有的页面级变量
         const pageData = reactive<Record<string, any>>({});
         const pageMethods = reactive<Record<string, any>>({});
+
+        provide(getAppMode, () => {
+            return props.appMode;
+        });
+        provide(addComponent, (key, componentInstance) => {
+            components.set(key, new FdComponent(key, componentInstance));
+        });
+        provide(removeComponent, key => {
+            components.delete(key);
+        });
+        provide(getComponentByKey, key => {
+            return components.get(key);
+        });
+        provide(getPageInstance, () => {
+            return instance?.proxy;
+        });
 
         return {
             components,
@@ -76,26 +100,6 @@ export default defineComponent({
         _isDesignMode(): boolean {
             return this.appMode === EnumAppMode.design;
         },
-    },
-    provide() {
-        const $this = this;
-        return {
-            getAppMode(): EnumAppMode {
-                return $this.appMode;
-            },
-            addComponent(key: string, componentInstance: Vue.ComponentInternalInstance): void {
-                $this.components.set(key, new FdComponent(key, componentInstance));
-            },
-            removeComponent(key: string): void {
-                $this.components.delete(key);
-            },
-            getComponentByKey(key: string): FdComponent | undefined {
-                return $this.components.get(key);
-            },
-            getPageInstance(): Vue.ComponentPublicInstance {
-                return $this;
-            },
-        };
     },
     methods: {
         // 清空form组件的值

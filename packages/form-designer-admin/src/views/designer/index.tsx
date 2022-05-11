@@ -37,6 +37,7 @@ export default defineComponent({
         CloudUploadOutlined,
         LoadingOutlined,
     },
+    inject: ['displayAppLeft'],
     mounted() {
         this.$store.commit(commit_app_changeMode, { mode: EnumAppMode.design });
         this.$store.commit(`designer/${commit_designer_init_designer_page}`);
@@ -190,17 +191,22 @@ export default defineComponent({
                             class="switch-designer"
                             checkedChildren="设计"
                             unCheckedChildren="预览"
+                            checked={this.appMode === EnumAppMode.design}
                             onChange={(checked: boolean) => {
                                 if (checked) {
                                     this.$store.commit(commit_app_changeMode, {
                                         mode: EnumAppMode.design,
                                     });
                                     this.showRight = true;
+                                    // @ts-ignore
+                                    this.displayAppLeft && this.displayAppLeft(true);
                                 } else {
                                     this.$store.commit(commit_app_changeMode, {
                                         mode: EnumAppMode.preview,
                                     });
                                     this.showRight = false;
+                                    // @ts-ignore
+                                    this.displayAppLeft && this.displayAppLeft(false);
                                 }
                             }}
                         />

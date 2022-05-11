@@ -1,25 +1,24 @@
 import { inject } from 'vue';
+import {
+    formSubmited,
+    getFdFormFields,
+    getFdFormRef,
+} from 'form-designer-types/constant/injectKeys';
 export default function useFormInject() {
     // 获取当前form实例
-    const getFdForm = inject<any>('getFdFormRef', () => {
-        console.log('inject getFdForm -------->');
+    const getFdForm = inject(getFdFormRef, () => {
         return undefined;
     });
     // 获取所有form字段组件
-    type getFormFieldsType = () => any[];
-    const getFormFields = inject<getFormFieldsType>('getFdFormFields', () => {
-        console.log('inject $getFormFields -------->');
+    const getFormFields = inject(getFdFormFields, () => {
         return [];
     });
 
-    type formSubmitedType = (success: boolean, message: string) => void;
-    const formSubmited: formSubmitedType = inject('formSubmited', () => () => {
-        console.log('inject formSubmited --------->');
-    });
+    const _formSubmited = inject(formSubmited, null);
 
     return {
         getFdForm,
         getFormFields,
-        formSubmited,
+        formSubmited: _formSubmited,
     };
 }

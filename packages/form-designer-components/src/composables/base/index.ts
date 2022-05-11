@@ -12,12 +12,9 @@ import { EnumAppMode } from 'form-designer-types/enum';
 export default function useBaseIndex(props: ISetupBaseProps) {
     const injects = useBaseInject();
     // 生命周期
-    useBaseLifecycle(props, {
-        addComponent: injects.addComponent,
-        removeComponent: injects.removeComponent,
-    });
+    useBaseLifecycle(props);
     // 添加watch
-    useBaseWatch(props, { appMode: injects.getAppMode() });
+    useBaseWatch(props);
     // 处理后的css
     const c_Css = computed<any>(() => {
         return {

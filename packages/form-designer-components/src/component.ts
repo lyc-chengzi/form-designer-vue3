@@ -6,7 +6,6 @@ import { IComponentState } from 'form-designer-types/interface/components';
 import { propsFactory, cssFactory } from 'form-designer-utils';
 export default class FdComponent {
     constructor(key: string, componentInstance: Vue.ComponentInternalInstance | undefined) {
-        console.log('componentInstance', componentInstance);
         this.$key = key;
         this.internalInstance = componentInstance;
         // @ts-ignore

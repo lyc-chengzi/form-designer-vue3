@@ -53,23 +53,29 @@ export default defineComponent({
             selectedPage: 'selectedPage',
         }),
     },
-    provide: {
-        selectComponent(componentKey: string) {
-            const compElement = document.getElementById(componentKey);
-            const mainRef = thisRefs['designerMain'] as typeof DesignerMain;
-            if (compElement && mainRef) {
-                mainRef.handleClick({ target: compElement });
-            }
-        },
-        unselectComponent() {
-            const mainRef = thisRefs['designerMain'] as typeof DesignerMain;
-            if (mainRef) {
-                mainRef.unselect();
-            }
-        },
-        setRefs(key: string, value: Vue.ComponentPublicInstance) {
-            thisRefs[key] = value;
-        },
+    provide() {
+        const $this = this;
+        return {
+            selectComponent(componentKey: string) {
+                const compElement = document.getElementById(componentKey);
+                const mainRef = thisRefs['designerMain'] as typeof DesignerMain;
+                if (compElement && mainRef) {
+                    mainRef.handleClick({ target: compElement });
+                }
+            },
+            unselectComponent() {
+                const mainRef = thisRefs['designerMain'] as typeof DesignerMain;
+                if (mainRef) {
+                    mainRef.unselect();
+                }
+            },
+            setRefs(key: string, value: Vue.ComponentPublicInstance) {
+                thisRefs[key] = value;
+            },
+            displayAppLeft(show: boolean) {
+                $this.showLeft = show;
+            },
+        };
     },
     render() {
         return (
