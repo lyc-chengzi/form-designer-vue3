@@ -25,8 +25,6 @@ import { IComponentState } from 'form-designer-types/interface/components';
 const props = defineProps<{
     state: IComponentState;
     parentId: string;
-    pageData: Record<string, any>;
-    pageMethod: Record<string, any>;
 }>();
 const { c_Props } = useBase(props);
 useForm(props);

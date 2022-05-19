@@ -13,8 +13,6 @@ import { IFormInfo } from './form';
 export interface ISetupBaseProps {
     state: IComponentState;
     parentId: string;
-    pageData: Record<string, any>;
-    pageMethod: Record<string, any>;
 }
 
 /* form组件基础属性定义 */

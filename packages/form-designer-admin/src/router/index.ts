@@ -47,6 +47,7 @@ let routes: Array<RouteRecordRaw> = [
 routes = routes.concat(demoRoutes);
 
 const _createRouter = () => {
+    console.log('process.env.BASE_URL', process.env.BASE_URL);
     const router = createRouter({
         history: createWebHistory(process.env.BASE_URL),
         routes,

@@ -1,4 +1,4 @@
-import { computed } from 'vue';
+import { computed, getCurrentInstance } from 'vue';
 import { EnumApiType, EnumEventType } from 'form-designer-types/enum/components';
 import { ISetupBaseProps } from 'form-designer-types/interface/components';
 import { apiFactory, eventFactory, propsFactory, request } from 'form-designer-utils';
@@ -16,7 +16,7 @@ export default function useBaseIndex(props: ISetupBaseProps) {
     // 添加watch
     useBaseWatch(props);
     // 处理后的css
-    const c_Css = computed<any>(() => {
+    const c_Css = computed<Record<string, string>>(() => {
         return {
             ...{
                 margin: 'auto',
@@ -56,8 +56,7 @@ export default function useBaseIndex(props: ISetupBaseProps) {
         return result;
     };
     const getFunction = (functionName: string) => {
-        // @ts-ignore
-        const $function = injects.getPageInstance().pageMethod[functionName];
+        const $function = injects.pageMethods[functionName];
         let result: any = undefined;
         if ($function) {
             result = $function();
@@ -72,18 +71,18 @@ export default function useBaseIndex(props: ISetupBaseProps) {
         if (events.length) {
             // 组装事件处理函数
             return function ($event: Event) {
-                const $page = injects.getPageInstance();
                 // 组装执行函数
                 const functions = events.map(event => {
                     if (event.funcName) {
-                        // @ts-ignore
-                        return $page.pageMethod[event.funcName];
+                        return getFunction(event.funcName);
                     } else {
-                        return new Function('$event', '$state', event.funcStr);
+                        return new Function('$event', '$state', event.funcStr).bind(
+                            getCurrentInstance()
+                        );
                     }
                 });
                 functions.forEach(func => {
-                    func.call($page, $event, props.state);
+                    func($event, props.state);
                 });
             };
         } else return emptyFunc;

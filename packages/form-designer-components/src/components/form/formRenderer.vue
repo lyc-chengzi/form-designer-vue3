@@ -14,8 +14,6 @@
                 class="fd-form-layout"
                 :state="props.state"
                 :parentId="props.parentId"
-                :pageData="props.pageData"
-                :pageMethod="props.pageMethod"
             ></fd-layout>
         </template>
         <template v-else>
@@ -27,8 +25,6 @@
                 :state="child"
                 :parentId="props.state.key"
                 :data-type="child.type"
-                :pageData="props.pageData"
-                :pageMethod="props.pageMethod"
             ></component>
         </template>
     </form>

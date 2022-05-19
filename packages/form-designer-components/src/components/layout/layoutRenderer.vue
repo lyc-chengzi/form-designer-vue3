@@ -29,8 +29,6 @@
                         :id="element.key"
                         :data-id="element.key"
                         :data-type="element.type"
-                        :pageData="props.pageData"
-                        :pageMethod="props.pageMethod"
                     ></component>
                 </template>
             </Draggable>
@@ -44,8 +42,6 @@
                 :state="child"
                 :parentId="props.state.key"
                 :data-type="child.type"
-                :pageData="props.pageData"
-                :pageMethod="props.pageMethod"
             ></component>
         </template>
     </div>
@@ -74,8 +70,6 @@ import { IComponentState } from 'form-designer-types/interface/components';
 const props = defineProps<{
     state: IComponentState;
     parentId: string;
-    pageData: Record<string, any>;
-    pageMethod: Record<string, any>;
 }>();
 const store = useStore();
 
