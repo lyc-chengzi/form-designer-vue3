@@ -11,6 +11,9 @@ import { EnumAppMode } from 'form-designer-types/enum';
 
 export default function useBaseIndex(props: ISetupBaseProps) {
     const injects = useBaseInject();
+    // 用于express表达式中的变量
+    const { pageData, pageMethods } = injects;
+
     // 生命周期
     useBaseLifecycle(props);
     // 添加watch
@@ -56,8 +59,8 @@ export default function useBaseIndex(props: ISetupBaseProps) {
         return result;
     };
     const getFunction = (functionName: string) => {
-        const $function = injects.pageMethods[functionName];
-        let result: any = undefined;
+        const $function = pageMethods[functionName];
+        let result: any = new Function();
         if ($function) {
             result = $function();
         }
@@ -128,6 +131,8 @@ export default function useBaseIndex(props: ISetupBaseProps) {
 
         // inject
         ...injects,
+        pageData,
+        pageMethods,
 
         // 计算属性
         c_Css,

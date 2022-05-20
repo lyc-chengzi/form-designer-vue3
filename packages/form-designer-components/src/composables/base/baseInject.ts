@@ -5,8 +5,8 @@ import {
     removeComponent,
     getComponentByKey,
     getAppMode,
-    // pageData,
-    // pageMethods,
+    pageData,
+    pageMethods,
 } from 'form-designer-types/constant/injectKeys';
 
 import { inject, ComponentInternalInstance } from 'vue';
@@ -34,13 +34,13 @@ export default function useBaseInject() {
             console.log('inject default: getAppMode ------------->');
             return EnumAppMode.view as EnumAppMode;
         }),
-        // pageData: inject(pageData, () => {
-        //     console.log('inject default: pageData ------------->');
-        //     return {};
-        // }),
-        // pageMethods: inject(pageMethods, () => {
-        //     console.log('inject default: pageMethods ------------->');
-        //     return {};
-        // }),
+        pageData: inject(pageData, () => {
+            console.log('inject default: pageData ------------->');
+            return {};
+        }),
+        pageMethods: inject(pageMethods, () => {
+            console.log('inject default: pageMethods ------------->');
+            return {};
+        }),
     };
 }
