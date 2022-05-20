@@ -7,7 +7,6 @@ module.exports = {
     pages: {
         index: 'src/entry/designer-client.ts',
     },
-    publicPath: '.',
     productionSourceMap: sourceMap,
     configureWebpack: (config) => {
         if(target !== 'lib') {
