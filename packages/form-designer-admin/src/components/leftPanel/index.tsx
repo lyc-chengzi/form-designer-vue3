@@ -5,6 +5,8 @@ import {
     EditOutlined,
     DeleteOutlined,
     FormOutlined,
+    PlusCircleFilled,
+    ClusterOutlined,
 } from '@ant-design/icons-vue';
 import classnames from 'classnames';
 import DesignerComponentList from './componentList';
@@ -31,6 +33,8 @@ export default defineComponent({
         EditOutlined,
         DeleteOutlined,
         FormOutlined,
+        PlusCircleFilled,
+        ClusterOutlined,
     },
     inject: ['selectComponent'],
     computed: {
@@ -91,9 +95,9 @@ export default defineComponent({
                         <h3>
                             {pageListChildren.find(c => c.selected === true)?.title}
                             <div class="pages-action">
-                                <i class="iconfont icontianjia" onClick={this.addPage} />
-                                <i
-                                    class={classnames('iconfont', 'icon_40tree', {
+                                <PlusCircleFilled onClick={this.addPage} />
+                                <ClusterOutlined
+                                    class={classnames('icon_40tree', {
                                         selected: pageListChildren[1].selected,
                                     })}
                                     onClick={() => {
@@ -102,7 +106,7 @@ export default defineComponent({
                                         pageListChildren[1].selected =
                                             !pageListChildren[1].selected;
                                     }}
-                                />
+                                ></ClusterOutlined>
                             </div>
                         </h3>
                         <ul

@@ -26,7 +26,13 @@ import { IFormProps } from 'form-designer-components/src/components/form/interfa
 import classNames from 'classnames';
 import FdComponent from 'form-designer-components/src/component';
 import { forms, apps } from 'form-designer-utils/service';
-import { CloudUploadOutlined, LoadingOutlined } from '@ant-design/icons-vue';
+import {
+    CloudUploadOutlined,
+    LoadingOutlined,
+    ImportOutlined,
+    ExportOutlined,
+    SaveOutlined,
+} from '@ant-design/icons-vue';
 
 export default defineComponent({
     name: 'designer-page',
@@ -36,6 +42,9 @@ export default defineComponent({
         Preview,
         CloudUploadOutlined,
         LoadingOutlined,
+        ExportOutlined,
+        ImportOutlined,
+        SaveOutlined,
     },
     inject: ['displayAppLeft'],
     mounted() {
@@ -162,7 +171,7 @@ export default defineComponent({
             >
                 <div class="designer-index-toolbar">
                     <div class="toolbar-left">
-                        <i class="iconfont daochu" title="导出" onClick={this.exportJson} />
+                        <ExportOutlined title="导出" onClick={this.exportJson} />
                         <a-upload
                             name="file"
                             action="/import/config"
@@ -170,9 +179,9 @@ export default defineComponent({
                             showUploadList={false}
                             onChange={this.importJson}
                         >
-                            <i class="iconfont daoru" title="导入json" />
+                            <ImportOutlined title="导入" />
                         </a-upload>
-                        <i class="iconfont baocun" onClick={this.saveForm} title="保存" />
+                        <SaveOutlined onClick={this.saveForm} title="保存" />
                     </div>
                     <div class="toolbar-right">
                         <a-button

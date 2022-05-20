@@ -82,14 +82,7 @@ export default defineComponent({
             <div class="form-designer-framework">
                 <div class="form-designer-header">
                     <div class="header-left">
-                        <img class="logo" src={require('@/assets/logo.svg')} />
                         <div class="logo-text">Form Designer</div>
-                    </div>
-                    <div class="header-right">
-                        <i class="iconfont bangzhu" />
-                        <i class="iconfont user" />
-                        <i class="iconfont yuyan1" />
-                        <i class="iconfont gengduo" />
                     </div>
                 </div>
                 <div class="form-designer-content">
