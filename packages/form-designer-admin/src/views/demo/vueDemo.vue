@@ -22,6 +22,7 @@
                 <h3>Test 2 content: {{ content.text }}</h3>
             </template>
         </Test2>
+        <button @click="postMessage">测试</button>
     </div>
 </template>
 <script lang="ts">
@@ -33,6 +34,25 @@ export default defineComponent({
     components: {
         Test1,
         Test2,
+    },
+    methods: {
+        postMessage() {
+            const editor = window.open('http://localhost:8080/template-designer/');
+            setTimeout(() => {
+                editor?.postMessage(
+                    {
+                        postData: {
+                            htmlstr: `
+                                <html>
+                                    <h1>测试</h1>
+                                </html>
+                            `,
+                        },
+                    },
+                    'http://localhost:8080'
+                );
+            }, 2000);
+        },
     },
 });
 </script>
