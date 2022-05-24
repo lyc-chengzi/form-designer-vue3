@@ -5,9 +5,9 @@ import { EnumAppEnv } from 'form-designer-types/enum';
 
 const __domain = {
     [EnumAppEnv.local]: '',
-    [EnumAppEnv.dev]: 'https://tdp-dev.lenovo.com',
-    [EnumAppEnv.tst]: 'https://tdp-tst.lenovo.com',
-    [EnumAppEnv.production]: 'https://tdp-tst.lenovo.com',
+    [EnumAppEnv.dev]: 'https://xxx.com',
+    [EnumAppEnv.tst]: 'https://xxx.com',
+    [EnumAppEnv.production]: 'https://xxx.com',
 };
 
 // 读取环境变量 VUE_APP_ENV

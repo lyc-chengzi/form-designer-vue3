@@ -15,7 +15,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lyc-chengzi/form-designer.git"
+    "url": "git+https://github.com/xxx/form-designer.git"
   },
   "scripts": {
     "test": "echo \"Error: run tests from root\" && exit 1",
@@ -30,9 +30,9 @@
     "lint": "eslint src/**/*.ts"
   },
   "bugs": {
-    "url": "https://github.com/lyc-chengzi/form-designer/issues"
+    "url": "https://github.com/xxx/form-designer/issues"
   },
-  "homepage": "https://github.com/lyc-chengzi/form-designer#readme",
+  "homepage": "https://github.com/xxx/form-designer#readme",
   "dependencies": {
     "dayjs": "^1.10.7",
     "koa": "^2.13.4",

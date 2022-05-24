@@ -2,12 +2,12 @@
 
 包含[designer]（设计端） 和 [view]（展示端）部分端
 
-###[designer端] => lyc-chengzi.github.com/form-designer/designer
+###[designer端] => xxx.github.com/form-designer/designer
 ```
 
 ```
 
-###[view端] => lyc-chengzi.github.com/form-designer/view
+###[view端] => xxx.github.com/form-designer/view
 ```
 
 ```

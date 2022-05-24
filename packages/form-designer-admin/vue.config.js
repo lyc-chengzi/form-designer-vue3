@@ -19,38 +19,6 @@ module.exports = {
     },
     devServer: {
         proxy: {
-            '/form': {
-                target: 'https://tdp-dev.lenovo.com/form',
-                ws: true,
-                changeOrigin: true,
-                pathRewrite: {
-                    '^/form': '',
-                },
-            },
-            '/api-repo': {
-                target: 'https://tdp-dev.lenovo.com/api-repo',
-                ws: true,
-                changeOrigin: true,
-                pathRewrite: {
-                    '^/api-repo': '',
-                },
-            },
-            '/dm': {
-                target: 'https://tdp-dev.lenovo.com/dm',
-                ws: true,
-                changeOrigin: true,
-                pathRewrite: {
-                    '^/dm': '',
-                },
-            },
-            '/uidesigner': {
-                target: 'https://tdp-dev.lenovo.com/uidesigner',
-                ws: true,
-                changeOrigin: true,
-                pathRewrite: {
-                    '^/uidesigner': '',
-                },
-            },
             '/import/csv': {
                 target: 'http://10.99.166.218:3030/upload/csv/v1',
                 ws: true,
