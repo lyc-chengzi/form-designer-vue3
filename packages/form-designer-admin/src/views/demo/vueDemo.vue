@@ -35,10 +35,17 @@ export default defineComponent({
         Test1,
         Test2,
     },
+    mounted() {
+        console.log(12121212);
+        window.addEventListener('message', (data: any) => {
+            console.log('receive data', data);
+        });
+    },
     methods: {
         postMessage() {
-            const editor = window.open('http://localhost:8080/template-designer/');
-            setTimeout(() => {
+            const editor = window.open('http://localhost:8080/');
+            setTimeout(function () {
+                console.log('loaded....');
                 editor?.postMessage(
                     {
                         postData: {

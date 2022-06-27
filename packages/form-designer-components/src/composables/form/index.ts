@@ -6,7 +6,6 @@ import { IFieldCallbackRule } from 'form-designer-types/interface/components/for
 import { ISetupBaseProps } from 'form-designer-types/interface/components';
 
 export default function useFormIndex(props: ISetupBaseProps) {
-    console.log('useFormIndex --------------->');
     const injects = useFormInject();
     // 创建组件时，添加对应的field字段
     const $fields = injects.getFormFields();

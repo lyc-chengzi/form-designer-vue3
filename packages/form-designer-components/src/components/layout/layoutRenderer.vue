@@ -1,13 +1,13 @@
 <template>
     <!--只渲染layout组件-->
-    <div
-        :class="{ 'fd-layout': true, 'designer-comp': c_isDesignMode && !_isPage }"
-        :id="props.state.type === layoutType ? props.state.key : ''"
-        :data-id="props.state.key"
-        :data-type="props.state.type"
-        :style="props.state.type === layoutType ? _Css : {}"
-    >
-        <template v-if="c_isDesignMode">
+    <template v-if="c_isDesignMode">
+        <div
+            :class="{ 'fd-layout': true, 'designer-comp': c_isDesignMode && !_isPage }"
+            :id="props.state.type === layoutType ? props.state.key : ''"
+            :data-id="props.state.key"
+            :data-type="props.state.type"
+            :style="props.state.type === layoutType ? _Css : {}"
+        >
             <Draggable
                 class="layout-drag"
                 :data-id="props.state.key"
@@ -32,19 +32,19 @@
                     ></component>
                 </template>
             </Draggable>
-        </template>
-        <template v-else>
-            <component
-                v-for="child in props.state.list"
-                :key="child.key"
-                :is="child.type"
-                :id="child.key"
-                :state="child"
-                :parentId="props.state.key"
-                :data-type="child.type"
-            ></component>
-        </template>
-    </div>
+        </div>
+    </template>
+    <template v-else>
+        <component
+            v-for="child in props.state.list"
+            :key="child.key"
+            :is="child.type"
+            :id="child.key"
+            :state="child"
+            :parentId="props.state.key"
+            :data-type="child.type"
+        ></component>
+    </template>
 </template>
 
 <script lang="ts">

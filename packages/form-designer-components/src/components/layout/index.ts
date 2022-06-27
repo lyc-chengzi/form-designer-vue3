@@ -16,6 +16,7 @@ export const register: registerComponentFunc = function () {
         type: EnumComponentType.layout,
         order: 100,
         listGroup: 'normal',
+        showInList: false,
         propsConfigs: [
             { key: 'showShadow', label: '显示阴影', selector: EnumPropsSelector.switch },
         ],

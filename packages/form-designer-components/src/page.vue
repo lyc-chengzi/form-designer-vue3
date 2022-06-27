@@ -1,17 +1,6 @@
 <template>
     <div v-if="json" class="template-page" :id="json.key" :style="json.css" data-app>
-        <template v-if="_isDesignMode">
-            <fd-layout class="fd-page-layout" :state="json" parentId=""></fd-layout>
-        </template>
-        <template v-else>
-            <component
-                :is="state.type"
-                v-for="state in json.list"
-                :key="state.key"
-                :state="state"
-                :parentId="json!.key"
-            ></component>
-        </template>
+        <fd-layout class="fd-page-layout" :state="json" parentId=""></fd-layout>
     </div>
 </template>
 

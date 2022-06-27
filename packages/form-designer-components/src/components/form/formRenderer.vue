@@ -9,24 +9,7 @@
         :style="c_Css"
         @submit.prevent="submitForm"
     >
-        <template v-if="c_isDesignMode">
-            <fd-layout
-                class="fd-form-layout"
-                :state="props.state"
-                :parentId="props.parentId"
-            ></fd-layout>
-        </template>
-        <template v-else>
-            <component
-                v-for="child in props.state.list"
-                :key="child.key"
-                :is="child.type"
-                :id="child.key"
-                :state="child"
-                :parentId="props.state.key"
-                :data-type="child.type"
-            ></component>
-        </template>
+        <fd-layout :state="props.state" parentId=""></fd-layout>
     </form>
 </template>
 <script lang="ts">
@@ -56,8 +39,6 @@ const internalInstance = getCurrentInstance();
 const props = defineProps<{
     state: IComponentState;
     parentId: string;
-    pageData: Record<string, any>;
-    pageMethod: Record<string, any>;
 }>();
 const { c_Props, c_Css, c_isDesignMode, getAppMode } = useBase(props);
 const { formSubmited } = useForm(props);
